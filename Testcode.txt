@@ -1,0 +1,25 @@
+activity1 <- activity[complete.cases(activity),]
+activity1 <- activity1 %>% group_by(interval) %>% summarize (total = sum(steps))
+
+ggplot(activity1, aes(interval,total)) + geom_line()
+
+No_NA <- nrow(activity)- nrow(activity[complete.cases(activity),])
+
+x1 <- activity
+x2 <- activity1
+
+mergeddata <- merge (x1, x2, by= "interval")
+
+p <- meregeddata
+
+ind <- is.na(p$steps)
+
+p[ind,2] <- p [ind,4]
+
+p <- p[,(1:3)]
+
+
+p1$weekday <- factor(ifelse(weekdays(as.Date(p1$date)) %in% c("Saturday","Saturday"),"NO","YES"))
+
+
+
